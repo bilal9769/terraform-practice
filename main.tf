@@ -1,5 +1,5 @@
 module "resource_group" {
-  source = "../../modules/resource-group"
+  source = "./modules/resource-group"
 
   name     = "rg-bcsla-dev"
   location = var.location
@@ -10,13 +10,13 @@ module "resource_group" {
 }
 
 module "network" {
-  source              = "../../modules/network"
+  source              = "./modules/network"
   resource_group_name = module.resource_group.name
   location            = var.location
 }
 
 module "compute" {
-  source              = "../../modules/compute"
+  source              = "./modules/compute"
   resource_group_name = module.resource_group.name
   location            = var.location
   subnet_id           = module.network.subnet_1_id
@@ -26,7 +26,7 @@ module "compute" {
 }
 
 module "storage" {
-  source              = "../../modules/storage"
+  source              = "./modules/storage"
   resource_group_name = module.resource_group.name
   location            = var.location
   subnet_id           = module.network.subnet_2_id
